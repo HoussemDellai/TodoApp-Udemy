@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoApp.Views.AddTodoPage"
+             xmlns:viewModels="clr-namespace:TodoApp.ViewModels"
+             Title="Create New Todo">
+
+    <ContentPage.BindingContext>
+        <viewModels:AddTodoViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout VerticalOptions="Center"
+                 Spacing="20"
+                 Padding="20">
+
+        <Entry Text="{Binding SelectedTodo.Title}"
+               FontSize="24"
+               Placeholder="Title" />
+
+        <Switch IsToggled="{Binding SelectedTodo.IsDone}"
+                HorizontalOptions="End" />
+
+        <Button Text="Send Todo"
+                BackgroundColor="DodgerBlue"
+                TextColor="White"
+                FontSize="30"
+                Command="{Binding SendTodoCommand}" />
+
+    </StackLayout>
+
+</ContentPage>

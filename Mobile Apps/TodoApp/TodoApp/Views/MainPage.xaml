@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoApp.MainPage"
+             xmlns:viewModels="clr-namespace:TodoApp.ViewModels"
+             Title="All my Todoes">
+
+    <ContentPage.BindingContext>
+        <viewModels:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+
+        <Button Text="Add Todo"
+                Clicked="Button_OnClicked"
+                BackgroundColor="DodgerBlue"
+                TextColor="White"
+                FontSize="30" />
+
+        <Button Text="Refresh"
+                Command="{Binding RefreshCommand}"
+                BackgroundColor="DeepPink"
+                TextColor="White"
+                FontSize="30" />
+
+        <ListView HasUnevenRows="True"
+                  ItemsSource="{Binding Todos}"
+                  ItemTapped="ListView_OnItemTapped"
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding RefreshCommand}"
+                  IsRefreshing="{Binding IsRefreshing}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="12">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Id, StringFormat='{0}-'}"
+                                       TextColor="DodgerBlue"
+                                       FontAttributes="Bold"
+                                       FontSize="24"
+                                       WidthRequest="36"/>
+                                <Label Text="{Binding Title}"
+                                       TextColor="Navy"
+                                       FontSize="28"
+                                       FontAttributes="Bold" />
+                            </StackLayout>
+                            <Grid>
+                                <Label Text="{Binding IsDone, StringFormat='Done: {0}'}"
+                                       TextColor="DeepPink"/>
+                                <Label Text="{Binding UpdatedAt, StringFormat='{0:MMM dd, yyyy}'}"
+                                       TextColor="LightSeaGreen"
+                                       HorizontalOptions="End"/>
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+
+</ContentPage>

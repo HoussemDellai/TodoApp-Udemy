@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:TodoApp.ViewModels;assembly=TodoApp"
+             x:Class="TodoApp.Views.EditTodoPage"
+             Title="Update or Delete Todo">
+    
+    <!--<ContentPage.BindingContext>
+        <viewModels:EditTodoViewModel/>
+    </ContentPage.BindingContext>-->
+    
+    <StackLayout VerticalOptions="Center"
+                 Spacing="20"
+                 Padding="20">
+        
+        <Entry Text="{Binding SelectedTodo.Title}" />
+        
+        <Switch IsToggled="{Binding SelectedTodo.IsDone}"
+                HorizontalOptions="End"/>
+
+        <Button Text="Edit Todo"
+                BackgroundColor="DodgerBlue"
+                TextColor="White"
+                FontSize="30"
+                Command="{Binding EditTodoCommand}"/>
+
+        <Button Text="Delete Todo"
+                BackgroundColor="DeepPink"
+                TextColor="White"
+                FontSize="30"
+                Command="{Binding DeleteTodoCommand}" />
+
+    </StackLayout>
+    
+</ContentPage>
